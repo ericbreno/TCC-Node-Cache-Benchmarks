@@ -1,0 +1,14 @@
+{
+  "name": "benchmarker",
+  "version": "1.0.0",
+  "description": "Projeto que realiza execução e sumarização dos dados de benchmark",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemark": "^0.3.0"
+  }
+}
