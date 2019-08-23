@@ -15,8 +15,8 @@ module.exports.runBenchmark = async (fn, setup = null, duration = 10000) => {
     const grouped = {
         tempoMedio: result.milliseconds(4),
         margemErro: roundTo(error, 8),
-        maisRapido: min,
-        maisLento: max,
+        maisRapido: min / 1000000,
+        maisLento: max / 1000000,
         execucoes: count,
         execucoesPorSegundo: result.hz(2),
         desvioPadrao: result.sd(4),
