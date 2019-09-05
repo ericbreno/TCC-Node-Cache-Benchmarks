@@ -4,9 +4,9 @@ const fs = require('fs');
 
 const configuration = {
     // in ms
-    duration: 30000,
-    size: 10000,
-    queries: 10,
+    runs: 1000,
+    size: 1000,
+    queries: 1,
 };
 
 const main = async () => {
@@ -25,11 +25,11 @@ const main = async () => {
     }
 
     fs.writeFileSync(
-        `results/s:${configuration.size}-q:${configuration.queries}-d:${configuration.duration}-${new Date().toDateString()}.json`,
+        `results/s:${configuration.size}-q:${configuration.queries}-r:${configuration.runs}-${new Date().toDateString()}.json`,
         JSON.stringify(results, null, 2)
     );
 
     console.log('Done');
 }
 
-main().catch(console.error);
+main().then(console.log).catch(console.error);
