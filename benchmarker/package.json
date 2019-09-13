@@ -8,13 +8,12 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemark": "^0.3.0"
-  },
   "dependencies": {
+    "benchmark": "^2.1.4",
     "lodash": "^4.17.15",
     "lru-cache": "^5.1.1",
     "memory-cache": "^0.2.0",
+    "microtime": "^3.0.0",
     "node-cache": "^4.2.1",
     "uuid": "^3.3.3"
   }

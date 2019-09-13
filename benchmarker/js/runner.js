@@ -2,13 +2,12 @@ const { runBenchmark } = require('./benchmarker');
 
 module.exports.runForCache = async ({ keys, name, cache }, { runs, duration, queries }) => {
 
-    const runner = callback => {
+    let index = 0;
+
+    const runner = () => {
         for (let i = 0; i < queries; i++) {
-            keys.forEach(key => {
-                cache.get(key);
-            });
+            cache.get(keys[index++ % keys.length]);
         }
-        callback();
     };
 
     console.log(`Começando run para ${name}...`);
