@@ -3,7 +3,7 @@ const Benchmark = require('benchmark');
 const roundTo = (n, d) => Math.round(n * (10 ** d)) / (10 ** d);
 const getMemmory = () => process.memoryUsage().heapUsed;
 
-module.exports.runBenchmark = async (fn, setup = null, duration = 10000, runs) => {
+module.exports.runBenchmark = async (fn, setup = null, runs) => {
     const result = await new Promise((res, rej) => {
         const bench = new Benchmark(fn, {
             onComplete: function (result) {
@@ -12,10 +12,11 @@ module.exports.runBenchmark = async (fn, setup = null, duration = 10000, runs) =
             onError: function (err) {
                 rej(err);
             },
-            // onCycle: function(result) {
-            //     console.log('>>', result.currentTarget.stats.sample.length);
-            //     console.log(String(result.target));
-            // },
+            onCycle: function(result) {
+                // console.log('>>', result.currentTarget.stats.sample.length);
+                // console.log('>>', result.target.stats.sample.length);
+                // console.log(String(result.target));
+            },
             minSamples: runs
         });
         bench.run();
@@ -59,6 +60,7 @@ module.exports.runBenchmark = async (fn, setup = null, duration = 10000, runs) =
         execucoes: tempos.length,
         desvioPadrao: result.stats.deviation * normalizacao,
         margemErro: result.stats.moe * normalizacao,
+        margemErroRelativa: result.stats.rme,
         tempos
     };
 

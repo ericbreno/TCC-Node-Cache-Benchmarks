@@ -1,6 +1,6 @@
 const { runBenchmark } = require('./benchmarker');
 
-module.exports.runForCache = async ({ keys, name, cache }, { runs, duration, queries }) => {
+module.exports.runForCache = async ({ keys, name, cache }, { runs, queries }) => {
 
     let index = 0;
 
@@ -10,9 +10,8 @@ module.exports.runForCache = async ({ keys, name, cache }, { runs, duration, que
         }
     };
 
-    console.log(`Começando run para ${name}...`);
-    const result = await runBenchmark(runner, null, duration, runs);
-    console.log(`Fim run...`);
+    const result = await runBenchmark(runner, null, runs);
+    console.log("");
 
     return result;
 };

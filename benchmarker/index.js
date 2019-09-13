@@ -3,9 +3,8 @@ const runner = require('./js/runner');
 const fs = require('fs');
 
 const configuration = {
-    runs: 100,
-    size: 1000000,
-    queries: 2
+    runs: 1000,
+    size: 10000,
 };
 
 const main = async () => {
@@ -16,17 +15,25 @@ const main = async () => {
         configuration
     };
 
-    for (let cache of caches) {
-        console.log('Running', cache.name);
-        const thisResult = await runner.runForCache(cache, configuration);
-        
-        results.keys = cache.keys;
-        results[cache.name] = thisResult;
+    const getsSize = [1, 2, 4, 8, 16];
+
+    for (let gets of getsSize) {
+        console.log('>>>> Running for', gets, 'gets <<<<<');
+
+        results[gets] = {};
+
+        for (let cache of caches) {
+            console.log('Running', cache.name);
+            const thisResult = await runner.runForCache(cache, { ...configuration, queries: gets });
+
+            // results.keys = cache.keys;
+            results[gets][cache.name] = thisResult;
+        }
     }
 
     fs.writeFileSync(
-        `results-miss/s:${configuration.size}-q:${configuration.queries}-r:${configuration.runs}-${new Date().toDateString()}.json`,
-        JSON.stringify(results, null, 2)
+        `results-get/results-s:${configuration.size}.json`,
+        JSON.stringify(results, null)
     );
 
     console.log('Done');
