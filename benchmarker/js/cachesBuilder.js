@@ -42,7 +42,8 @@ module.exports.buildCaches = ({ size }) => {
     populateCache(nodeCache, keys);
     populateCache(memoryCache, keys, true);
 
-    const shuffledKeys = lodash.shuffle(keys);
+    // const shuffledKeys = lodash.shuffle(keys);
+    const shuffledKeys = generateKeys(size);
 
     return [
         { keys: shuffledKeys, name: 'lruCache', cache: lruCache },

@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const configuration = {
     runs: 1000,
-    size: 10000,
+    size: 1000000,
 };
 
 const main = async () => {
@@ -32,7 +32,7 @@ const main = async () => {
     }
 
     fs.writeFileSync(
-        `results-get/results-s:${configuration.size}.json`,
+        `results-get/results-miss-s:${configuration.size}.json`,
         JSON.stringify(results, null)
     );
 

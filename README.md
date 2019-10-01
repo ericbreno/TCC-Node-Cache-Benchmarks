@@ -2,7 +2,7 @@
 Comparativo de desempenho entre bibliotecas de Cache em NodeJS.
 
 ### Biblioteca que realiza a execução
-- [Nodemark](https://github.com/JoshuaWise/nodemark)
+- [Benchmark.js](https://github.com/bestiejs/benchmark.js)
 
 ### Setup
 - [uuid](https://www.npmjs.com/package/uuid) - Geração de chaves
